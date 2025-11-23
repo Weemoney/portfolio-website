@@ -1,0 +1,113 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0f0f0f;
+    font-family: 'Inter', sans-serif;
+    height: 100vh;
+    overflow: hidden; /* prevent body scroll */
+    color: white;
+}
+
+/* SLIDER WRAPPER */
+.slides-container {
+    display: flex;
+    height: 100vh;
+
+    /* REMOVE width: 200vw — it breaks scrolling */
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* scroll bar */
+.slides-container::-webkit-scrollbar {
+    height: 8px;
+}
+.slides-container::-webkit-scrollbar-thumb {
+    background: #444;
+}
+
+/* EACH SLIDE */
+.slide {
+    flex: 0 0 100vw;  /* full width per slide – auto total width */
+    height: 100vh;
+    scroll-snap-align: start;
+
+    display: flex;
+    position: relative;
+
+    background: linear-gradient(120deg, #111, #222);
+}
+
+/* TEXT */
+.text-content {
+    width: 60%;
+    padding-left: 80px;
+    padding-top: 20vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.text-content h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.text-content p {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    max-width: 550px;
+    opacity: 0.9;
+}
+
+/* IMAGE SIDE */
+.image-side {
+    overflow: hidden;
+    position: relative;
+    width: 40%;
+    height: 100%;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.image-side .bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 650ms cubic-bezier(.22,.98,.25,.99);
+    will-change: transform;
+    filter: brightness(0.8);
+}
+
+/* Hover effect */
+.image-side:hover {
+    filter: brightness(1.1);
+}
+
+/* RIGHT IMAGE (SLIDE 1) */
+.right-img .bg {
+    background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/18a812e6-e344-4457-a2f0-5a67c9728f94/djkkeev-df5614b7-cc6b-4f6c-8d2c-2111a6c70ef1.jpg/v1/fill/w_1182,h_676,q_70,strp/aristotle_and_lua_luna_marble_moonstone_sculpture__by_tianaslavrovaporter_djkkeev-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzMyIiwicGF0aCI6Ii9mLzE4YTgxMmU2LWUzNDQtNDQ1Ny1hMmYwLTVhNjdjOTcyOGY5NC9kamtrZWV2LWRmNTYxNGI3LWNjNmItNGY2Yy04ZDJjLTIxMTFhNmM3MGVmMS5qcGciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.4Ky7rC_s_-bXHkIbXiSgLIXH5MmPWD32JpQMUam2r7Y");
+}
+
+/* LEFT IMAGE (SLIDE 2) */
+.left-img .bg {
+    background-image: url("https://i.etsystatic.com/37432055/r/il/e8d4e2/5017061209/il_794xN.5017061209_ircc.jpg");
+}
+
+/* optional parallax static background class */
+.parallax-bg {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+}

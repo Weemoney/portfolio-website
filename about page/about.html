@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me Slides</title>
+  <link rel="stylesheet" href="about.css">
+</head>
+<body>
+
+<div class="slides-container" id="slider">
+
+  <!-- SLIDE 1 -->
+  <section class="slide">
+    <div class="text-content">
+      <h1>My Philosophy</h1>
+      <p>
+        Ini nanti kamu tulis tentang prinsip hidup, cara berpikir, atau fondasi intelektualmu.
+      </p>
+    </div>
+    <div class="image-side right-img" onclick="nextSlide()">
+      <div class="bg" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- SLIDE 2 -->
+  <section class="slide">
+    <div class="image-side left-img" onclick="prevSlide()">
+      <div class="bg" aria-hidden="true"></div>
+    </div>
+    <div class="text-content">
+      <h1>Big Dreams</h1>
+      <p>
+        Ini tempat kamu cerita tentang ambisi besarmu, rencana hidup, dan visi jangka panjang.
+      </p>
+    </div>
+  </section>
+
+</div>
+
+<script src="./about.js"></script>
+
+</body>
+</html>

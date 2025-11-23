@@ -1,0 +1,198 @@
+  /* RESET */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html,body { height: 100%; }
+
+  /* BODY & BACKGROUND */
+  body {
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(120deg, #00ff99, #000000, #9933ff);
+    box-shadow: inset 0 0 80px black, inset 0 0 60px #000000, inset 0 0 40px #9933ff;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* WRAPPER centered */
+  #projects-wrapper {
+    width: 90vw;
+    height: 80vh; /* EXACT requested */
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+  }
+
+  /* PANEL (closed state) */
+  .project-panel {
+    width: 6vw;               /* closed thickness */
+    min-width: 56px;          /* ensure visible on tiny screens */
+    height: 80vh;
+    background: linear-gradient(180deg,#111,#141414);
+    border: 1px solid rgba(255,255,255,0.04);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: width 420ms cubic-bezier(.22,.98,.27,.99), background 300ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 30px rgba(0,0,0,0.45);
+  }
+
+  /* panel hover hint */
+  .project-panel:hover { 
+  background: linear-gradient(150deg, #06a566, #000000, #6907ca);
+  border-color: #ffffff;
+  box-shadow: 0 0 10px #ffffff;
+  transform: scale(1.02) smoothly; 
+  transition: all 0.3s ease;
+}
+
+  /* ACTIVE -> expanded */
+  .project-panel.active {
+    width: 80vw;             /* expanded width */
+    background: linear-gradient(180deg, #161616, #0f0f12);
+    border-color: rgba(120,70,255,0.18);
+  }
+
+  /* VERTICAL LABEL visible when collapsed */
+  .panel-label {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 2px;
+    font-weight: 700;
+    font-size: 1rem;
+    opacity: 0.95;
+    transform-origin: center;
+    transition: opacity 240ms, transform 240ms;
+    pointer-events: none;
+  }
+  .project-panel.active .panel-label {
+    opacity: 0.12;
+    transform: translateY(-8px) scale(.98);
+  }
+
+  /* Content overlay inside panel (hidden until active) */
+  .panel-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    gap: 0;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 360ms ease, transform 360ms ease;
+    pointer-events: none;
+  }
+
+  .project-panel.active .panel-content {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  /* Left text area (70%) */
+  .content-left {
+    width: 70%;
+    padding: 2.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .content-left h2 {
+    font-size: 2rem;
+    line-height: 1.05;
+    margin-bottom: 0.25rem;
+    color: #fff;
+  }
+  .content-left p {
+    color: rgba(255,255,255,0.86);
+    font-size: 1.02rem;
+    max-width: 40rem;
+    line-height: 1.5;
+  }
+  .content-left .meta {
+    margin-top: 0.6rem;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.62);
+  }
+  .content-left .btn-row {
+    margin-top: 1.2rem;
+  }
+  .btn {
+    display: inline-block;
+    background: linear-gradient(90deg,#00ffbf 0%, #66f0ff 100%);
+    color: #001;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 6px 18px rgba(0,255,190,0.08);
+  }
+
+  /* Right image area (30%) that hugs right border */
+  .content-right {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* ensure image sticks to right edge */
+    padding: 0; /* no inner gap so image touches edge */
+  }
+  .panel-img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    border-left: 1px solid rgba(255,255,255,0.06);
+  }
+
+  /* small decorative corner stroke */
+  .project-panel::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.06), transparent);
+    pointer-events: none;
+  }
+
+  /* RESPONSIVE: stack vertically on small screens */
+  @media (max-width: 920px) {
+    #projects-wrapper {
+      flex-direction: column;
+      height: 92vh;
+      width: 92vw;
+      gap: 0.8rem;
+      padding: 0;
+      justify-content: start;
+      align-items: center;
+      overflow-y: auto;
+    }
+    .project-panel {
+      width: 100%;
+      height: 24vh;
+      min-height: 120px;
+    }
+    .project-panel.active {
+      height: 48vh;
+      width: 100%;
+    }
+    .panel-label { writing-mode: horizontal-tb; transform: none; }
+    .panel-content { flex-direction: row; }
+    .content-left { width: 60%; padding: 1rem; }
+    .content-right { width: 40%; }
+    .panel-img { border-left: none; border-top: 1px solid rgba(255,255,255,0.06); height: 100%; }
+  }
+
+  /* tiny screens adjust text */
+  @media (max-width: 520px) {
+    .content-left h2 { font-size: 1.4rem; }
+    .content-left p { font-size: 0.95rem; }
+  }

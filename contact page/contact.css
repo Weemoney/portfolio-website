@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(145deg, #0a0f0f, #0f0010, #210800);
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
+
+/* Container */
+.contact-container {
+    display: flex;
+    gap: 50px;
+}
+
+/* Icon Style */
+.icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 22px;
+    transition: 0.3s;
+}
+
+.icon i {
+    font-size: 60px;
+    margin-bottom: 10px;
+    padding: 22px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+/* Glow per platform */
+.github i {
+    border: 2px solid #808080;
+}
+.github:hover i {
+    box-shadow: 0 0 20px #cccccc;
+}
+
+.linkedin i {
+    border: 2px solid #00aaff;
+}
+.linkedin:hover i {
+    box-shadow: 0 0 20px #00c8ff;
+}
+
+.instagram i {
+    border: 2px solid #ff0099;
+}
+.instagram:hover i {
+    box-shadow: 0 0 20px #ff44cc;
+}
+
+/* Hover Zoom */
+.icon:hover i {
+    transform: scale(1.15);
+}
