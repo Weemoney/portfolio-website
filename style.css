@@ -14,6 +14,15 @@ body {
     position: relative;
 }
 
+.cta {
+    color: inherit;
+    text-decoration: none;
+}
+
+.cta:hover {
+    text-decoration: underline;
+}
+
 /* === OUTER FLEXBOX === */
 .layout {
     display: flex;
