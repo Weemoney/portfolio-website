@@ -51,20 +51,11 @@
     }
     .back-link:hover { opacity: 1; }
 
-    .page-title {
-      font-size: 13px;
-      letter-spacing: 0.1em;
-      color: rgba(255,255,255,0.35);
-    }
+    .page-title { font-size: 13px; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); }
     .page-title span { color: var(--orange); }
 
-    main {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 48px 32px 80px;
-    }
+    main { max-width: 760px; margin: 0 auto; padding: 48px 32px 80px; }
 
-    /* LOGIN SCREEN */
     #login-screen {
       display: flex;
       flex-direction: column;
@@ -91,12 +82,7 @@
     }
     .login-label::before { content: '> '; color: var(--orange); }
 
-    .login-title {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 28px;
-      color: var(--orange);
-    }
+    .login-title { font-size: 20px; font-weight: 700; margin-bottom: 28px; color: var(--orange); }
 
     .field-label {
       font-size: 10px;
@@ -122,17 +108,9 @@
       border-radius: 0;
     }
 
-    input:focus, textarea:focus {
-      border-color: rgba(255,106,0,0.4);
-    }
+    input:focus, textarea:focus { border-color: rgba(255,106,0,0.4); }
 
-    .login-error {
-      font-size: 11px;
-      color: #ff4444;
-      letter-spacing: 0.08em;
-      min-height: 16px;
-      margin-top: 10px;
-    }
+    .login-error { font-size: 11px; color: #ff4444; letter-spacing: 0.08em; min-height: 16px; margin-top: 10px; }
 
     .btn {
       font-family: 'JetBrains Mono', monospace;
@@ -146,39 +124,17 @@
       background: transparent;
     }
 
-    .btn-orange {
-      color: var(--orange);
-      border-color: rgba(255,106,0,0.4);
-    }
-    .btn-orange:hover {
-      background: rgba(255,106,0,0.1);
-      border-color: var(--orange);
-    }
+    .btn-orange { color: var(--orange); border-color: rgba(255,106,0,0.4); }
+    .btn-orange:hover { background: rgba(255,106,0,0.1); border-color: var(--orange); }
 
-    .btn-green {
-      color: var(--green);
-      border-color: rgba(0,255,100,0.4);
-    }
-    .btn-green:hover {
-      background: rgba(0,255,100,0.08);
-      border-color: var(--green);
-    }
+    .btn-green { color: var(--green); border-color: rgba(0,255,100,0.4); }
+    .btn-green:hover { background: rgba(0,255,100,0.08); border-color: var(--green); }
 
-    .btn-muted {
-      color: rgba(255,255,255,0.3);
-      border-color: rgba(255,255,255,0.1);
-    }
-    .btn-muted:hover {
-      color: rgba(255,255,255,0.6);
-      border-color: rgba(255,255,255,0.25);
-    }
+    .btn-muted { color: rgba(255,255,255,0.3); border-color: rgba(255,255,255,0.1); }
+    .btn-muted:hover { color: rgba(255,255,255,0.6); border-color: rgba(255,255,255,0.25); }
 
-    .btn:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-    /* EDITOR SCREEN */
     #editor-screen { display: none; }
 
     .editor-header {
@@ -190,45 +146,19 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    .editor-label {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
+    .editor-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
     .editor-label::before { content: '> '; color: var(--green); }
 
-    .editor-actions {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
+    .editor-actions { display: flex; gap: 10px; align-items: center; }
 
-    .field-group {
-      margin-bottom: 20px;
-    }
+    .field-group { margin-bottom: 20px; }
 
-    textarea#content {
-      resize: vertical;
-      min-height: 280px;
-      line-height: 1.7;
-    }
+    textarea#content { resize: vertical; min-height: 280px; line-height: 1.7; }
 
-    .tags-hint {
-      font-size: 10px;
-      color: rgba(255,255,255,0.2);
-      margin-top: 6px;
-      letter-spacing: 0.05em;
-    }
+    .tags-hint { font-size: 10px; color: rgba(255,255,255,0.2); margin-top: 6px; letter-spacing: 0.05em; }
 
-    .char-count {
-      font-size: 10px;
-      color: rgba(255,255,255,0.2);
-      text-align: right;
-      margin-top: 4px;
-    }
+    .char-count { font-size: 10px; color: rgba(255,255,255,0.2); text-align: right; margin-top: 4px; }
 
-    /* STATUS */
     .status-bar {
       position: fixed;
       bottom: 0; left: 0; right: 0;
@@ -249,14 +179,8 @@
     .status-bar.error   { color: #ff4444; }
     .status-bar.loading { color: var(--orange); }
 
-    .status-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: currentColor;
-      flex-shrink: 0;
-    }
+    .status-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
 
-    /* POSTS LIST */
     .posts-section {
       margin-top: 48px;
       padding-top: 32px;
@@ -290,11 +214,7 @@
       white-space: nowrap;
     }
 
-    .admin-post-date {
-      font-size: 10px;
-      color: rgba(255,255,255,0.25);
-      flex-shrink: 0;
-    }
+    .admin-post-date { font-size: 10px; color: rgba(255,255,255,0.25); flex-shrink: 0; }
 
     .btn-delete {
       font-family: 'JetBrains Mono', monospace;
@@ -308,10 +228,7 @@
       transition: all 0.2s;
       flex-shrink: 0;
     }
-    .btn-delete:hover {
-      border-color: #ff4444;
-      color: #ff4444;
-    }
+    .btn-delete:hover { border-color: #ff4444; color: #ff4444; }
   </style>
 </head>
 <body>
@@ -322,8 +239,6 @@
   </header>
 
   <main>
-
-    <!-- LOGIN -->
     <div id="login-screen">
       <div class="login-box">
         <div class="login-label">access required</div>
@@ -339,7 +254,6 @@
       </p>
     </div>
 
-    <!-- EDITOR -->
     <div id="editor-screen">
       <div class="editor-header">
         <span class="editor-label">new post</span>
@@ -367,11 +281,10 @@
 
       <div class="field-group">
         <div class="field-label">Content <span style="opacity:0.4">(markdown supported)</span></div>
-        <textarea id="content" placeholder="Write your post here...&#10;&#10;Markdown is supported:&#10;# Heading&#10;**bold** _italic_&#10;- list item"></textarea>
+        <textarea id="content" placeholder="Write your post here...&#10;&#10;Markdown supported:&#10;# Heading&#10;**bold** _italic_&#10;- list item"></textarea>
         <div class="char-count" id="char-count">0 chars</div>
       </div>
 
-      <!-- EXISTING POSTS -->
       <div class="posts-section">
         <div class="posts-section-title">existing posts</div>
         <div id="admin-posts-list">
@@ -379,7 +292,6 @@
         </div>
       </div>
     </div>
-
   </main>
 
   <div class="status-bar" id="status-bar">
@@ -390,24 +302,25 @@
   <script>
     const GITHUB_USER = 'Weemoney';
     const GITHUB_REPO = 'portfolio-website';
-    const POSTS_FILE = 'more%20page/blog%20page/blog/posts.json';
+    const POSTS_FILE  = 'more page/blog page/blog/posts.json';
     const API_BASE    = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}`;
 
-    let token = '';
+    let token      = '';
     let postsCache = [];
+
+    // encode path for GitHub API
+    function encodePath(p) {
+      return p.split('/').map(s => encodeURIComponent(s)).join('/');
+    }
 
     // ── LOGIN ──────────────────────────────────────────────
     async function doLogin() {
       const input = document.getElementById('token-input').value.trim();
       const err   = document.getElementById('login-error');
       if (!input) { err.textContent = 'token required'; return; }
-
       showStatus('verifying token...', 'loading');
-
       try {
-        const res = await fetch(`${API_BASE}`, {
-          headers: { Authorization: `Bearer ${input}` }
-        });
+        const res = await fetch(API_BASE, { headers: { Authorization: `Bearer ${input}` } });
         if (!res.ok) throw new Error();
         token = input;
         sessionStorage.setItem('gh_token', token);
@@ -433,90 +346,83 @@
       loadAdminPosts();
     }
 
-    // auto-login from session
     window.addEventListener('load', () => {
       const saved = sessionStorage.getItem('gh_token');
       if (saved) { token = saved; showEditor(); }
+
+      document.getElementById('content').addEventListener('input', () => {
+        document.getElementById('char-count').textContent =
+          document.getElementById('content').value.length + ' chars';
+      });
+
+      document.getElementById('token-input').addEventListener('keydown', e => {
+        if (e.key === 'Enter') doLogin();
+      });
     });
 
-    // ── CHAR COUNT ─────────────────────────────────────────
-    document.addEventListener('DOMContentLoaded', () => {
-      const content = document.getElementById('content');
-      if (content) {
-        content.addEventListener('input', () => {
-          document.getElementById('char-count').textContent = content.value.length + ' chars';
-        });
-      }
-      const tokenInput = document.getElementById('token-input');
-      if (tokenInput) {
-        tokenInput.addEventListener('keydown', e => {
-          if (e.key === 'Enter') doLogin();
-        });
-      }
-    });
+    // ── GITHUB HELPERS ─────────────────────────────────────
 
-    // ── GITHUB FILE HELPERS ────────────────────────────────
+    // get file content + sha. returns { content, sha }
     async function getFile(path) {
-      const encodedPath = path.split('/').map(p => encodeURIComponent(p)).join('/');
-      const res = await fetch(`${API_BASE}/contents/${encodedPath}`, {
+      const res = await fetch(`${API_BASE}/contents/${encodePath(path)}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (res.status === 404) return { content: null, sha: null };
-      if (!res.ok) throw new Error('fetch failed');
+      if (!res.ok) throw new Error('fetch failed: ' + res.status);
       const data = await res.json();
       const content = JSON.parse(atob(data.content.replace(/\n/g, '')));
       return { content, sha: data.sha };
     }
 
+    // get sha only (lightweight)
+    async function getFileSha(path) {
+      const res = await fetch(`${API_BASE}/contents/${encodePath(path)}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (res.status === 404) return null;
+      if (!res.ok) throw new Error('sha fetch failed');
+      const data = await res.json();
+      return data.sha;
+    }
+
+    // put JSON file
     async function putFile(path, content, sha, message) {
       const body = {
         message,
         content: btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2)))),
       };
       if (sha) body.sha = sha;
-      const res = await fetch(`${API_BASE}/contents/${path.split('/').map(p => encodeURIComponent(p)).join('/')}`, {
+      const res = await fetch(`${API_BASE}/contents/${encodePath(path)}`, {
         method: 'PUT',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
+        headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
       });
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.message || 'put failed');
-      }
+      if (!res.ok) { const e = await res.json(); throw new Error(e.message || 'put failed'); }
       return res.json();
     }
 
-    async function putRawFile(path, rawString, sha, message) {
+    // put raw text file — always fetches latest sha first to avoid 422
+    async function putRawFile(path, rawString, message) {
+      const existingSha = await getFileSha(path);
       const body = {
         message,
         content: btoa(unescape(encodeURIComponent(rawString))),
       };
-      if (sha) body.sha = sha;
-      const res = await fetch(`${API_BASE}/contents/${path.split('/').map(p => encodeURIComponent(p)).join('/')}`, {
+      if (existingSha) body.sha = existingSha;
+      const res = await fetch(`${API_BASE}/contents/${encodePath(path)}`, {
         method: 'PUT',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
+        headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
       });
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.message || 'put failed');
-      }
+      if (!res.ok) { const e = await res.json(); throw new Error(e.message || 'put failed'); }
       return res.json();
     }
 
+    // delete file
     async function deleteFile(path, sha, message) {
-      const res = await fetch(`${API_BASE}/contents/${path.split('/').map(p => encodeURIComponent(p)).join('/')}`, {
+      const res = await fetch(`${API_BASE}/contents/${encodePath(path)}`, {
         method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
+        headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ message, sha })
       });
       if (!res.ok) throw new Error('delete failed');
@@ -529,7 +435,7 @@
       const tagsRaw = document.getElementById('post-tags').value.trim();
       const image   = document.getElementById('post-image').value.trim();
 
-      if (!title) { showStatus('title is required', 'error'); return; }
+      if (!title)   { showStatus('title is required', 'error'); return; }
       if (!content) { showStatus('content is required', 'error'); return; }
 
       const btn = document.getElementById('publish-btn');
@@ -537,27 +443,27 @@
       showStatus('publishing...', 'loading');
 
       try {
-        const id   = Date.now().toString();
-        const date = new Date().toISOString();
-        const slug = `${date.slice(0,10)}-${title.toLowerCase().replace(/[^a-z0-9]+/g,'-').slice(0,40)}`;
-        const tags = tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [];
+        const id      = Date.now().toString();
+        const date    = new Date().toISOString();
+        const slug    = `${date.slice(0,10)}-${title.toLowerCase().replace(/[^a-z0-9]+/g,'-').slice(0,40)}`;
+        const tags    = tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [];
+        const preview = content.replace(/[#*`>\[\]!-]/g, '').trim().slice(0, 69) + ' ....';
 
-        // 1. save markdown post file
+        // 1. save markdown file — putRawFile handles sha automatically
         const postPath = `more page/blog page/blog/posts/${slug}.md`;
-        await putRawFile(postPath, content, null, `post: ${title}`);
+        await putRawFile(postPath, content, `post: ${title}`);
 
         // 2. update posts.json index
         const { content: posts, sha } = await getFile(POSTS_FILE);
         const postsList = posts || [];
-        const preview = content.replace(/[#*`>\-]/g, '').trim().slice(0, 69) + ' ... .';
         postsList.unshift({ id, slug, title, date, tags, image: image || null, file: postPath, preview });
         await putFile(POSTS_FILE, postsList, sha, `index: add ${title}`);
 
         // reset form
-        document.getElementById('post-title').value = '';
-        document.getElementById('content').value = '';
-        document.getElementById('post-tags').value = '';
-        document.getElementById('post-image').value = '';
+        document.getElementById('post-title').value   = '';
+        document.getElementById('content').value      = '';
+        document.getElementById('post-tags').value    = '';
+        document.getElementById('post-image').value   = '';
         document.getElementById('char-count').textContent = '0 chars';
 
         showStatus('published successfully!', 'success');
@@ -571,14 +477,14 @@
       }
     }
 
-    // ── LOAD ADMIN POSTS ───────────────────────────────────
+    // ── LOAD POSTS LIST ────────────────────────────────────
     async function loadAdminPosts() {
       const container = document.getElementById('admin-posts-list');
       try {
         const { content: posts } = await getFile(POSTS_FILE);
         postsCache = posts || [];
         if (!postsCache.length) {
-          container.innerHTML = `<p style="font-size:11px; color:rgba(255,255,255,0.2); letter-spacing:0.08em;">no posts yet</p>`;
+          container.innerHTML = `<p style="font-size:11px;color:rgba(255,255,255,0.2);letter-spacing:0.08em;">no posts yet</p>`;
           return;
         }
         container.innerHTML = postsCache.map(p => `
@@ -589,7 +495,7 @@
           </div>
         `).join('');
       } catch {
-        container.innerHTML = `<p style="font-size:11px; color:rgba(255,255,255,0.2);">could not load posts</p>`;
+        container.innerHTML = `<p style="font-size:11px;color:rgba(255,255,255,0.2);">could not load posts</p>`;
       }
     }
 
@@ -603,14 +509,9 @@
 
         // delete markdown file
         try {
-          const res = await fetch(`${API_BASE}/contents/${post.file}`, {
-            headers: { Authorization: `Bearer ${token}` }
-          });
-          if (res.ok) {
-            const fileData = await res.json();
-            await deleteFile(post.file, fileData.sha, `delete: ${post.title}`);
-          }
-        } catch {}
+          const sha = await getFileSha(post.file);
+          if (sha) await deleteFile(post.file, sha, `delete: ${post.title}`);
+        } catch { /* ok if file missing */ }
 
         // update index
         const { content: posts, sha } = await getFile(POSTS_FILE);
@@ -625,24 +526,16 @@
       }
     }
 
-    // ── STATUS BAR ─────────────────────────────────────────
+    // ── STATUS ─────────────────────────────────────────────
     function showStatus(msg, type) {
-      const bar  = document.getElementById('status-bar');
-      const text = document.getElementById('status-text');
+      const bar = document.getElementById('status-bar');
       bar.className = `status-bar show ${type}`;
-      text.textContent = msg;
+      document.getElementById('status-text').textContent = msg;
     }
 
     function hideStatus() {
       document.getElementById('status-bar').classList.remove('show');
     }
-
-    // Enter key on token input
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Enter' && document.getElementById('login-screen').style.display !== 'none') {
-        doLogin();
-      }
-    });
   </script>
 
 </body>

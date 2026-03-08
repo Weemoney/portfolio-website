@@ -13,7 +13,6 @@
       --orange: #ff6a00;
       --white:  #f0f0f0;
       --dark:   #0a0a0f;
-      --muted:  rgba(255,255,255,0.35);
       --card-border: rgba(255,255,255,0.06);
     }
 
@@ -32,7 +31,6 @@
       flex-direction: column;
     }
 
-    /* HEADER */
     header {
       flex-shrink: 0;
       display: flex;
@@ -42,7 +40,6 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
       background: rgba(10,10,15,0.9);
       backdrop-filter: blur(12px);
-      z-index: 10;
     }
 
     .back-link {
@@ -55,17 +52,9 @@
     }
     .back-link:hover { opacity: 1; }
 
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
+    .header-right { display: flex; align-items: center; gap: 16px; }
 
-    .page-title {
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      color: rgba(255,255,255,0.3);
-    }
+    .page-title { font-size: 12px; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); }
     .page-title span { color: var(--orange); }
 
     .admin-link {
@@ -79,7 +68,6 @@
     }
     .admin-link:hover { color: var(--orange); border-color: rgba(255,106,0,0.3); }
 
-    /* MAIN */
     main {
       flex: 1;
       display: flex;
@@ -88,7 +76,6 @@
       min-height: 0;
     }
 
-    /* FEED META ROW */
     .feed-meta {
       display: flex;
       align-items: center;
@@ -101,17 +88,12 @@
       font-size: 10px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgb(204, 200, 200);
+      color: rgba(255,255,255,0.22);
     }
     .feed-label::before { content: '> '; color: var(--green); }
 
-    .feed-info {
-      font-size: 10px;
-      color: rgb(204, 200, 200);
-      letter-spacing: 0.08em;
-    }
+    .feed-info { font-size: 10px; color: rgba(255,255,255,0.18); letter-spacing: 0.08em; }
 
-    /* GRID */
     .post-grid {
       flex: 1;
       display: grid;
@@ -121,14 +103,12 @@
       min-height: 0;
     }
 
-    /* CARD */
     .post-card {
       display: flex;
       gap: 12px;
       padding: 12px 14px;
       border: 1px solid var(--card-border);
       cursor: pointer;
-      text-decoration: none;
       color: inherit;
       position: relative;
       overflow: hidden;
@@ -136,22 +116,11 @@
       align-items: center;
     }
 
-    .post-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(255,255,255,0.02);
-      opacity: 0;
-      transition: opacity 0.15s;
-    }
-
     .post-card:hover {
       border-color: rgba(255,255,255,0.14);
       background: rgba(255,255,255,0.015);
     }
-    .post-card:hover::before { opacity: 1; }
 
-    /* LEFT */
     .post-left {
       flex: 1;
       display: flex;
@@ -167,7 +136,6 @@
       font-size: 13px;
       font-weight: 700;
       line-height: 1.3;
-      letter-spacing: 0.01em;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -179,13 +147,10 @@
       font-size: 10.5px;
       line-height: 1.6;
       color: rgba(255,255,255,0.38);
-      letter-spacing: 0.02em;
+      overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
-      line-clamp: 2;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
     .post-bottom {
@@ -195,12 +160,7 @@
       flex-wrap: wrap;
     }
 
-    .post-date {
-      font-size: 9px;
-      color: rgba(255,255,255,0.2);
-      letter-spacing: 0.08em;
-      flex-shrink: 0;
-    }
+    .post-date { font-size: 9px; color: rgba(255,255,255,0.2); letter-spacing: 0.08em; flex-shrink: 0; }
 
     .post-tags { display: flex; gap: 4px; flex-wrap: wrap; }
 
@@ -218,7 +178,6 @@
     .tag-orange { color: var(--orange); border-color: rgba(255,106,0,0.2); }
     .tag-default{ color: rgba(255,255,255,0.35); border-color: rgba(255,255,255,0.1); }
 
-    /* IMAGE */
     .post-image {
       width: 80px;
       height: 60px;
@@ -232,22 +191,15 @@
     }
 
     .post-image img {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
       opacity: 0.65;
       transition: opacity 0.2s;
     }
     .post-card:hover .post-image img { opacity: 0.85; }
 
-    .no-img-label {
-      font-size: 8px;
-      letter-spacing: 0.08em;
-      color: rgba(255,255,255,0.08);
-      text-transform: uppercase;
-    }
+    .no-img-label { font-size: 8px; letter-spacing: 0.08em; color: rgba(255,255,255,0.08); text-transform: uppercase; }
 
-    /* EMPTY / LOADING */
     .state-msg {
       grid-column: 1 / -1;
       display: flex;
@@ -255,14 +207,12 @@
       justify-content: center;
       flex-direction: column;
       gap: 10px;
-      color: rgb(172, 162, 162);
+      color: rgba(255,255,255,0.2);
       font-size: 11px;
       letter-spacing: 0.1em;
     }
-
     .state-msg .big { font-size: 28px; opacity: 0.25; }
 
-    /* PAGINATION */
     .pagination {
       flex-shrink: 0;
       display: flex;
@@ -275,9 +225,7 @@
     .pg-btn {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
-      letter-spacing: 0.06em;
-      width: 30px;
-      height: 28px;
+      width: 30px; height: 28px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -301,21 +249,13 @@
       background: rgba(0,255,100,0.06);
     }
 
-    .pg-btn:disabled {
-      opacity: 0.2;
-      cursor: not-allowed;
-    }
-
-    .pg-btn.arrow {
-      width: 36px;
-      font-size: 13px;
-    }
+    .pg-btn:disabled { opacity: 0.2; cursor: not-allowed; }
+    .pg-btn.arrow { width: 36px; font-size: 13px; }
 
     .pg-ellipsis {
       font-size: 11px;
       color: rgba(255,255,255,0.2);
       padding: 0 4px;
-      letter-spacing: 0.05em;
       line-height: 28px;
     }
   </style>
@@ -335,20 +275,17 @@
       <span class="feed-label">latest posts</span>
       <span class="feed-info" id="feed-info"></span>
     </div>
-
     <div class="post-grid" id="post-grid">
-      <div class="state-msg"><span>There is no post? Then, start writing!</span></div>
+      <div class="state-msg"><span>loading...</span></div>
     </div>
-
     <div class="pagination" id="pagination"></div>
   </main>
 
   <script>
     const GITHUB_USER = 'Weemoney';
     const GITHUB_REPO = 'portfolio-website';
-    const POSTS_FILE = 'more%20page/blog%20page/blog/posts.json';
+    const POSTS_FILE  = 'more%20page/blog%20page/blog/posts.json';
     const PER_PAGE    = 6;
-
     const TAG_COLORS  = ['tag-green', 'tag-purple', 'tag-orange', 'tag-default'];
 
     function tagColor(tag) {
@@ -361,43 +298,62 @@
       return new Date(iso).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
     }
 
-    let allPosts  = [];
-    let curPage   = 1;
+    function encodePath(p) {
+      return p.split('/').map(s => encodeURIComponent(s)).join('/');
+    }
+
+    let allPosts = [];
+    let curPage  = 1;
 
     async function loadPosts() {
+      const grid = document.getElementById('post-grid');
       try {
-        const url = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${POSTS_FILE}?t=${Date.now()}`;
-        const res = await fetch(url);
-        if (!res.ok) throw new Error();
-        allPosts = await res.json();
+        // 1. fetch index
+        const indexUrl = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${POSTS_FILE}?t=${Date.now()}`;
+        const indexRes = await fetch(indexUrl);
+        if (!indexRes.ok) throw new Error();
+        allPosts = await indexRes.json();
         allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        // 2. untuk post yang tidak punya preview, fetch dari file .md
+        await Promise.all(allPosts.map(async post => {
+          if (post.preview) return; // sudah ada, skip
+          if (!post.file) return;
+          try {
+            const mdUrl = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${encodePath(post.file)}?t=${Date.now()}`;
+            const mdRes = await fetch(mdUrl);
+            if (!mdRes.ok) return;
+            const md = await mdRes.text();
+            post.preview = md.replace(/[#*`>\[\]!-]/g, '').trim().slice(0, 69) + ' ....';
+          } catch { /* skip kalau gagal */ }
+        }));
+
         renderPage(1);
+
       } catch {
-        document.getElementById('post-grid').innerHTML =
-          `<div class="state-msg"><span class="big">∅</span><span>no posts yet</span></div>`;
+        grid.innerHTML = `<div class="state-msg"><span class="big">∅</span><span>There is no post? Then, start writing!</span></div>`;
       }
     }
 
     function renderPage(page) {
       curPage = page;
-      const grid      = document.getElementById('post-grid');
-      const total     = allPosts.length;
+      const grid       = document.getElementById('post-grid');
+      const total      = allPosts.length;
       const totalPages = Math.ceil(total / PER_PAGE);
-      const start     = (page - 1) * PER_PAGE;
-      const slice     = allPosts.slice(start, start + PER_PAGE);
+      const start      = (page - 1) * PER_PAGE;
+      const slice      = allPosts.slice(start, start + PER_PAGE);
 
       document.getElementById('feed-info').textContent =
         total ? `${start + 1}–${Math.min(start + PER_PAGE, total)} of ${total}` : '';
 
       if (!total) {
-        grid.innerHTML = `<div class="state-msg"><span class="big">∅</span><span>no posts yet</span></div>`;
+        grid.innerHTML = `<div class="state-msg"><span class="big">∅</span><span>There is no post? Then, start writing!</span></div>`;
         document.getElementById('pagination').innerHTML = '';
         return;
       }
 
-      // pad to 6 cards so grid stays full
       const cards = slice.map(post => {
-        const preview = post.preview || 'No preview available... .';
+        const preview = post.preview || '....';
         const tags    = (post.tags || []).map(t =>
           `<span class="tag ${tagColor(t)}">${t}</span>`).join('');
         const imgHtml = post.image
@@ -420,7 +376,7 @@
           </div>`;
       });
 
-      // fill empty slots so grid rows stay even
+      // fill empty slots
       while (cards.length < PER_PAGE) {
         cards.push(`<div class="post-card" style="opacity:0;pointer-events:none;"></div>`);
       }
@@ -433,25 +389,17 @@
       const pg = document.getElementById('pagination');
       if (total <= 1) { pg.innerHTML = ''; return; }
 
-      let html = '';
+      let html = `<button class="pg-btn arrow" onclick="renderPage(${cur - 1})" ${cur === 1 ? 'disabled' : ''}>‹</button>`;
 
-      // prev arrow
-      html += `<button class="pg-btn arrow" onclick="renderPage(${cur - 1})" ${cur === 1 ? 'disabled' : ''}>‹</button>`;
-
-      // page numbers with ellipsis
       const pages = getPageNumbers(cur, total);
       let prev = null;
       for (const p of pages) {
-        if (prev !== null && p - prev > 1) {
-          html += `<span class="pg-ellipsis">…</span>`;
-        }
+        if (prev !== null && p - prev > 1) html += `<span class="pg-ellipsis">…</span>`;
         html += `<button class="pg-btn ${p === cur ? 'active' : ''}" onclick="renderPage(${p})">${p}</button>`;
         prev = p;
       }
 
-      // next arrow
       html += `<button class="pg-btn arrow" onclick="renderPage(${cur + 1})" ${cur === total ? 'disabled' : ''}>›</button>`;
-
       pg.innerHTML = html;
     }
 
@@ -463,34 +411,7 @@
       return [...pages].sort((a, b) => a - b);
     }
 
-    async function loadPosts() {
-  try {
-    const url = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${POSTS_FILE}?t=${Date.now()}`;
-    const res = await fetch(url);
-    if (!res.ok) throw new Error();
-    allPosts = await res.json();
-    allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    // fetch preview untuk post yang belum punya
-    await Promise.all(allPosts.map(async post => {
-      if (!post.preview && post.file) {
-        try {
-          const mdUrl = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${post.file.replace(/ /g, '%20')}?t=${Date.now()}`;
-          const mdRes = await fetch(mdUrl);
-          if (mdRes.ok) {
-            const md = await mdRes.text();
-            post.preview = md.replace(/[#*`>\-]/g, '').trim().slice(0, 69) + ' ....';
-          }
-        } catch {}
-      }
-    }));
-
-    renderPage(1);
-  } catch {
-    document.getElementById('post-grid').innerHTML =
-      `<div class="state-msg"><span class="big">∅</span><span>no posts yet</span></div>`;
-  }
-}
+    loadPosts();
   </script>
 
 </body>

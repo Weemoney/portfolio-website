@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Postcard — Bagus</title>
+  <title>Post — Bagus</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
@@ -14,7 +14,6 @@
       --orange: #ff6a00;
       --white:  #f0f0f0;
       --dark:   #0a0a0f;
-      --muted:  rgba(255,255,255,0.35);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -56,6 +55,10 @@
       font-size: 13px;
       letter-spacing: 0.1em;
       color: rgba(255,255,255,0.35);
+      max-width: 400px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     main {
@@ -65,9 +68,7 @@
     }
 
     /* POST HEADER */
-    .post-header {
-      margin-bottom: 48px;
-    }
+    .post-header { margin-bottom: 48px; }
 
     .post-meta {
       display: flex;
@@ -82,11 +83,7 @@
       letter-spacing: 0.1em;
     }
 
-    .post-tags {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
+    .post-tags { display: flex; gap: 6px; flex-wrap: wrap; }
 
     .tag {
       font-size: 9px;
@@ -108,7 +105,6 @@
       font-weight: 700;
       line-height: 1.2;
       margin-bottom: 24px;
-      color: var(--white);
     }
 
     .post-cover {
@@ -117,6 +113,7 @@
       object-fit: cover;
       border: 1px solid rgba(255,255,255,0.08);
       opacity: 0.85;
+      display: block;
     }
 
     /* CONTENT */
@@ -197,7 +194,13 @@
       margin: 36px 0;
     }
 
-    /* LOADING / ERROR */
+    .post-content img {
+      max-width: 100%;
+      border: 1px solid rgba(255,255,255,0.08);
+      opacity: 0.85;
+    }
+
+    /* STATES */
     .state-msg {
       text-align: center;
       padding: 80px 0;
@@ -207,11 +210,14 @@
     }
 
     /* FADE IN */
-    .post-header, .post-content {
+    .post-header {
       opacity: 0;
       animation: fadeUp 0.5s ease 0.1s forwards;
     }
-    .post-content { animation-delay: 0.2s; }
+    .post-content {
+      opacity: 0;
+      animation: fadeUp 0.5s ease 0.2s forwards;
+    }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(12px); }
@@ -233,24 +239,28 @@
   <script>
     const GITHUB_USER = 'Weemoney';
     const GITHUB_REPO = 'portfolio-website';
-    const POSTS_FILE = 'more%20page/blog%20page/blog/posts.json';
+    const POSTS_FILE  = 'more%20page/blog%20page/blog/posts.json';
 
     const TAG_COLORS = ['tag-green', 'tag-purple', 'tag-orange', 'tag-default'];
+
     function tagColor(tag) {
-      let hash = 0;
-      for (let c of tag) hash += c.charCodeAt(0);
-      return TAG_COLORS[hash % TAG_COLORS.length];
+      let h = 0;
+      for (let c of tag) h += c.charCodeAt(0);
+      return TAG_COLORS[h % TAG_COLORS.length];
     }
 
     function formatDate(iso) {
-      const d = new Date(iso);
-      return d.toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' });
+      return new Date(iso).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' });
+    }
+
+    function encodePath(p) {
+      return p.split('/').map(s => encodeURIComponent(s)).join('/');
     }
 
     async function loadPost() {
+      const main = document.getElementById('main');
       const params = new URLSearchParams(window.location.search);
       const id = params.get('id');
-      const main = document.getElementById('main');
 
       if (!id) {
         main.innerHTML = `<div class="state-msg">no post id provided</div>`;
@@ -258,25 +268,28 @@
       }
 
       try {
+        // 1. fetch index
         const indexUrl = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${POSTS_FILE}?t=${Date.now()}`;
         const indexRes = await fetch(indexUrl);
-        if (!indexRes.ok) throw new Error();
+        if (!indexRes.ok) throw new Error('index not found');
         const posts = await indexRes.json();
-        const post = posts.find(p => p.id === id);
-        if (!post) throw new Error('not found');
 
-        // fetch markdown content
-        const fileUrl = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${post.file}?t=${Date.now()}`;
+        const post = posts.find(p => p.id === id);
+        if (!post) throw new Error('post not found');
+
+        // 2. fetch markdown content
+        const fileUrl = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${encodePath(post.file)}?t=${Date.now()}`;
         const fileRes = await fetch(fileUrl);
-        if (!fileRes.ok) throw new Error();
+        if (!fileRes.ok) throw new Error('content not found');
         const markdown = await fileRes.text();
 
+        // 3. render
         document.title = `${post.title} — Bagus`;
-        document.getElementById('header-title').textContent = `// ${post.title.slice(0, 30)}${post.title.length > 30 ? '...' : ''}`;
+        document.getElementById('header-title').textContent =
+          `// ${post.title.length > 40 ? post.title.slice(0, 40) + '...' : post.title}`;
 
         const tagsHtml = (post.tags || []).map(t =>
-          `<span class="tag ${tagColor(t)}">${t}</span>`
-        ).join('');
+          `<span class="tag ${tagColor(t)}">${t}</span>`).join('');
 
         const coverHtml = post.image
           ? `<img class="post-cover" src="${post.image}" alt="${post.title}" />`
@@ -296,7 +309,7 @@
 
         document.getElementById('post-content').innerHTML = marked.parse(markdown);
 
-      } catch {
+      } catch (e) {
         main.innerHTML = `<div class="state-msg">post not found</div>`;
       }
     }
