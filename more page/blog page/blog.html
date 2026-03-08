@@ -346,7 +346,7 @@
   <script>
     const GITHUB_USER = 'Weemoney';
     const GITHUB_REPO = 'portfolio-website';
-    const POSTS_FILE  = 'more%20page/blog%20page/blog/posts.json';
+    const POSTS_FILE = 'more%20page/blog%20page/blog/posts.json';
     const PER_PAGE    = 6;
 
     const TAG_COLORS  = ['tag-green', 'tag-purple', 'tag-orange', 'tag-default'];
@@ -475,7 +475,7 @@
     await Promise.all(allPosts.map(async post => {
       if (!post.preview && post.file) {
         try {
-          const mdUrl = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${post.file}?t=${Date.now()}`;
+          const mdUrl = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${post.file.replace(/ /g, '%20')}?t=${Date.now()}`;
           const mdRes = await fetch(mdUrl);
           if (mdRes.ok) {
             const md = await mdRes.text();
