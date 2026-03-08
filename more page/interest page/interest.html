@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Field of Interests — Bagus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="interest.css">
+    <script src="interest.js" defer></script>
+</head>
+<body>
+
+  <header>
+    <a href="/more page/more.html" class="back-link">← my_journal</a>
+    <span class="page-title">// <span>field of interests</span></span>
+  </header>
+
+  <canvas id="c"></canvas>
+
+  <div class="center-node" id="center-node">
+    <div class="center-inner">
+      <div class="center-dot"></div>
+      <div class="center-label">Bagus</div>
+    </div>
+  </div>
+
+  <div class="orbit-node node-esg"  id="node-esg"  onclick="togglePanel('esg')">
+    <div class="node-btn"><span class="node-icon">🌱</span><span class="node-label">ESG</span></div>
+  </div>
+  <div class="orbit-node node-web3" id="node-web3" onclick="togglePanel('web3')">
+    <div class="node-btn"><span class="node-icon">⛓️</span><span class="node-label">Web3</span></div>
+  </div>
+  <div class="orbit-node node-ai"   id="node-ai"   onclick="togglePanel('ai')">
+    <div class="node-btn"><span class="node-icon">🤖</span><span class="node-label">AI</span></div>
+  </div>
+  <div class="orbit-node node-vge"  id="node-vge"  onclick="togglePanel('vge')">
+    <div class="node-btn"><span class="node-icon">🎮</span><span class="node-label">VGE</span></div>
+  </div>
+
+  <div class="info-panel panel-esg" id="panel-esg">
+    <div class="panel-header">
+      <span class="panel-title">ESG</span>
+      <button class="panel-close" onclick="closePanel('esg')">×</button>
+    </div>
+    <div class="panel-body">
+      Environmental, Social & Governance — the framework shaping how businesses operate responsibly. I'm drawn to how ESG intersects with tech, data, and policy to drive sustainable impact.
+      <div class="panel-tags">
+        <span class="ptag">sustainability</span>
+        <span class="ptag">green tech</span>
+        <span class="ptag">impact investing</span>
+        <span class="ptag">policy</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-panel panel-web3" id="panel-web3">
+    <div class="panel-header">
+      <span class="panel-title">Web3</span>
+      <button class="panel-close" onclick="closePanel('web3')">×</button>
+    </div>
+    <div class="panel-body">
+      Decentralized systems, blockchain infrastructure, and the promise of a user-owned internet. I explore Web3 through the lens of bioinformatics data sovereignty and open science.
+      <div class="panel-tags">
+        <span class="ptag">blockchain</span>
+        <span class="ptag">DeFi</span>
+        <span class="ptag">decentralization</span>
+        <span class="ptag">open science</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-panel panel-ai" id="panel-ai">
+    <div class="panel-header">
+      <span class="panel-title">Artificial Intelligence</span>
+      <button class="panel-close" onclick="closePanel('ai')">×</button>
+    </div>
+    <div class="panel-body">
+      From machine learning pipelines to LLMs — AI is reshaping every field I care about. My focus sits at the intersection of AI and bioinformatics: generative models for genomics, protein folding, and drug discovery.
+      <div class="panel-tags">
+        <span class="ptag">machine learning</span>
+        <span class="ptag">LLM</span>
+        <span class="ptag">bioinformatics AI</span>
+        <span class="ptag">generative</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-panel panel-vge" id="panel-vge">
+    <div class="panel-header">
+      <span class="panel-title">Video Games Entertainment</span>
+      <button class="panel-close" onclick="closePanel('vge')">×</button>
+    </div>
+    <div class="panel-body">
+      Games as art, narrative, and culture. I study how the games industry evolves — from indie studios to AAA, from esports ecosystems to game-based learning in education and science.
+      <div class="panel-tags">
+        <span class="ptag">game design</span>
+        <span class="ptag">narrative</span>
+        <span class="ptag">esports</span>
+        <span class="ptag">game studies</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hint" id="hint">click a node to explore</div>
+
+</body>
+</html>

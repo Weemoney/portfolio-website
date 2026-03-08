@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books — Bagus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="books.css">
+</head>
+<body>
+
+  <header>
+    <a href="/more page/more.html" class="back-link">← my_journal</a>
+    <span class="page-title">// <span>books</span></span>
+  </header>
+
+  <main>
+    <div class="category-tabs">
+      <button class="tab-btn active" data-tab="novel" onclick="switchTab('novel')">Novel</button>
+      <div class="tab-divider"></div>
+      <button class="tab-btn" data-tab="textbook" onclick="switchTab('textbook')">Textbook</button>
+    </div>
+
+    <div class="book-stage">
+
+      <!-- NOVEL BOOK -->
+      <div class="book active" id="book-novel" data-category="novel">
+        <div class="book-spine">
+          <span class="spine-text">Novel</span>
+        </div>
+        <div class="book-left">
+          <div class="left-bg" style="background-image: url('https://tse3.mm.bing.net/th/id/OIP.9LjOtv4ec7IOhnFFUBRfMwHaLG?rs=1&pid=ImgDetMain&o=7&rm=3');"></div>
+          <div class="left-lines"></div>
+          <div class="left-content">
+            <div class="cover-label">// category_01</div>
+            <div class="cover-title" onclick="toggleBook('novel')" style="cursor:pointer; position:relative; z-index:3;">Novel</div>
+            <div class="open-hint">click to open</div>
+          </div>
+        </div>
+        <div class="book-right">
+          <div class="right-page">
+            <div class="page-header">my reading list — novel</div>
+            <ul class="book-entries" id="entries-novel"></ul>
+          </div>
+          <div class="page-corner"></div>
+        </div>
+        <div class="book-center-shadow"></div>
+      </div>
+
+      <!-- TEXTBOOK BOOK -->
+      <div class="book" id="book-textbook" data-category="textbook">
+        <div class="book-spine">
+          <span class="spine-text">Textbook</span>
+        </div>
+        <div class="book-left">
+          <div class="left-bg" style="background-image: url('https://tse2.mm.bing.net/th/id/OIP.Kb_12RLQgRw6Kig4oaFWKgHaEK?rs=1&pid=ImgDetMain&o=7&rm=3');"></div>
+          <div class="left-lines"></div>
+          <div class="left-content">
+            <div class="cover-label">// category_02</div>
+            <div class="cover-title" onclick="toggleBook('textbook')" style="cursor:pointer; position:relative; z-index:3;">Textbook</div>
+            <div class="open-hint">click to open</div>
+          </div>
+        </div>
+        <div class="book-right">
+          <div class="right-page">
+            <div class="page-header">my reading list — textbook</div>
+            <ul class="book-entries" id="entries-textbook"></ul>
+          </div>
+          <div class="page-corner"></div>
+        </div>
+        <div class="book-center-shadow"></div>
+      </div>
+
+    </div>
+
+    <p class="instruction">select a category above — then click the cover to open</p>
+  </main>
+
+  <script>
+    const data = {
+      novel: [
+        "Negeri 5 Menara",
+        "Ranah 3 Warna",
+        "Rantau 1 Muara",
+        "Negeri Para Bedebah",
+        "Negeri di Ujung Tanduk",
+        "Bedebah di Ujung Tanduk",
+        "Bibbi Bokens magische Bibliothek"
+      ],
+      textbook: [
+        "Schelling's Game Theory — Robert V. Dodge",
+        "Performance Evaluation: Metrics, Models and Benchmarks",
+        "Financial Statement Analysis — CFA® Program Curriculum",
+        "Purple Cow: Transform Your Business — Seth Godin"
+      ]
+    };
+
+    const bookStates = { novel: false, textbook: false };
+    const typewriterTimeouts = {};
+
+    function switchTab(tab) {
+      // close current open book
+      const allBooks = document.querySelectorAll('.book');
+      allBooks.forEach(b => {
+        b.classList.remove('active', 'open');
+      });
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById('book-' + tab).classList.add('active');
+      document.querySelector(`[data-tab="${tab}"]`).classList.add('active');
+
+      // reset state
+      bookStates[tab] = false;
+      clearTypewriters(tab);
+      const entries = document.getElementById('entries-' + tab);
+      entries.innerHTML = '';
+    }
+
+    function toggleBook(category) {
+      const book = document.getElementById('book-' + category);
+      const isOpen = bookStates[category];
+
+      if (!isOpen) {
+        book.classList.add('open');
+        bookStates[category] = true;
+        clearTypewriters(category);
+        startTypewriter(category);
+      } else {
+        book.classList.remove('open');
+        bookStates[category] = false;
+        clearTypewriters(category);
+        const entries = document.getElementById('entries-' + category);
+        entries.innerHTML = '';
+      }
+    }
+
+    function clearTypewriters(category) {
+      if (typewriterTimeouts[category]) {
+        typewriterTimeouts[category].forEach(t => clearTimeout(t));
+      }
+      typewriterTimeouts[category] = [];
+    }
+
+    function startTypewriter(category) {
+      const entries = document.getElementById('entries-' + category);
+      entries.innerHTML = '';
+      const list = data[category];
+      const color = category === 'novel' ? '#c8860a' : '#4fc3f7';
+      const timeouts = [];
+
+      list.forEach((title, index) => {
+        const delay = 550 + index * 320;
+
+        const t1 = setTimeout(() => {
+          const li = document.createElement('li');
+          li.className = 'book-entry';
+          li.innerHTML = `
+            <span class="entry-num">${String(index + 1).padStart(2, '0')}</span>
+            <span class="entry-title"></span>
+            <span class="typewriter-cursor" style="background:${color}"></span>
+          `;
+          entries.appendChild(li);
+
+          // animate in
+          requestAnimationFrame(() => {
+            li.style.opacity = '1';
+            li.style.transform = 'translateX(0)';
+          });
+
+          const titleEl = li.querySelector('.entry-title');
+          const cursor = li.querySelector('.typewriter-cursor');
+          let i = 0;
+
+          function typeChar() {
+            if (i <= title.length) {
+              titleEl.textContent = title.slice(0, i);
+              i++;
+              const t = setTimeout(typeChar, 28);
+              typewriterTimeouts[category].push(t);
+            } else {
+              // remove cursor from finished items except last
+              if (index < list.length - 1) {
+                cursor.style.display = 'none';
+              }
+            }
+          }
+
+          const t2 = setTimeout(typeChar, 80);
+          timeouts.push(t2);
+        }, delay);
+
+        timeouts.push(t1);
+      });
+
+      typewriterTimeouts[category] = timeouts;
+    }
+  </script>
+
+</body>
+</html>

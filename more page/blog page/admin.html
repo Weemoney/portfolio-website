@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Bagus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:  #00ff64;
+      --orange: #ff6a00;
+      --purple: #9115da;
+      --white:  #f0f0f0;
+      --dark:   #0a0a0f;
+      --muted:  rgba(255,255,255,0.35);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      font-family: 'JetBrains Mono', monospace;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,106,0,0.06) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(0,255,100,0.05) 0%, transparent 50%),
+        var(--dark);
+      color: var(--white);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(12px);
+    }
+
+    .back-link {
+      color: var(--orange);
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .back-link:hover { opacity: 1; }
+
+    .page-title {
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.35);
+    }
+    .page-title span { color: var(--orange); }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 32px 80px;
+    }
+
+    /* LOGIN SCREEN */
+    #login-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 70vh;
+      gap: 24px;
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 400px;
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 36px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .login-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .login-label::before { content: '> '; color: var(--orange); }
+
+    .login-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 28px;
+      color: var(--orange);
+    }
+
+    .field-label {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 8px;
+    }
+
+    input[type="password"],
+    input[type="text"],
+    textarea,
+    input[type="url"] {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--white);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      padding: 10px 14px;
+      outline: none;
+      transition: border-color 0.2s;
+      border-radius: 0;
+    }
+
+    input:focus, textarea:focus {
+      border-color: rgba(255,106,0,0.4);
+    }
+
+    .login-error {
+      font-size: 11px;
+      color: #ff4444;
+      letter-spacing: 0.08em;
+      min-height: 16px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 10px 24px;
+      border: 1px solid;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: transparent;
+    }
+
+    .btn-orange {
+      color: var(--orange);
+      border-color: rgba(255,106,0,0.4);
+    }
+    .btn-orange:hover {
+      background: rgba(255,106,0,0.1);
+      border-color: var(--orange);
+    }
+
+    .btn-green {
+      color: var(--green);
+      border-color: rgba(0,255,100,0.4);
+    }
+    .btn-green:hover {
+      background: rgba(0,255,100,0.08);
+      border-color: var(--green);
+    }
+
+    .btn-muted {
+      color: rgba(255,255,255,0.3);
+      border-color: rgba(255,255,255,0.1);
+    }
+    .btn-muted:hover {
+      color: rgba(255,255,255,0.6);
+      border-color: rgba(255,255,255,0.25);
+    }
+
+    .btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* EDITOR SCREEN */
+    #editor-screen { display: none; }
+
+    .editor-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .editor-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .editor-label::before { content: '> '; color: var(--green); }
+
+    .editor-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .field-group {
+      margin-bottom: 20px;
+    }
+
+    textarea#content {
+      resize: vertical;
+      min-height: 280px;
+      line-height: 1.7;
+    }
+
+    .tags-hint {
+      font-size: 10px;
+      color: rgba(255,255,255,0.2);
+      margin-top: 6px;
+      letter-spacing: 0.05em;
+    }
+
+    .char-count {
+      font-size: 10px;
+      color: rgba(255,255,255,0.2);
+      text-align: right;
+      margin-top: 4px;
+    }
+
+    /* STATUS */
+    .status-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      padding: 12px 32px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      background: rgba(10,10,15,0.95);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .status-bar.show { transform: translateY(0); }
+    .status-bar.success { color: var(--green); }
+    .status-bar.error   { color: #ff4444; }
+    .status-bar.loading { color: var(--orange); }
+
+    .status-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+
+    /* POSTS LIST */
+    .posts-section {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .posts-section-title {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .posts-section-title::before { content: '> '; color: var(--purple); }
+
+    .admin-post-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      gap: 16px;
+    }
+
+    .admin-post-title {
+      font-size: 13px;
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .admin-post-date {
+      font-size: 10px;
+      color: rgba(255,255,255,0.25);
+      flex-shrink: 0;
+    }
+
+    .btn-delete {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border: 1px solid rgba(255,68,68,0.2);
+      color: rgba(255,68,68,0.5);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .btn-delete:hover {
+      border-color: #ff4444;
+      color: #ff4444;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="blog.html" class="back-link">← blog</a>
+    <span class="page-title">// <span>admin</span></span>
+  </header>
+
+  <main>
+
+    <!-- LOGIN -->
+    <div id="login-screen">
+      <div class="login-box">
+        <div class="login-label">access required</div>
+        <div class="login-title">Admin Panel</div>
+        <div class="field-label">GitHub Personal Access Token</div>
+        <input type="password" id="token-input" placeholder="ghp_xxxxxxxxxxxx" autocomplete="off" />
+        <div class="login-error" id="login-error"></div>
+        <br>
+        <button class="btn btn-orange" onclick="doLogin()">Enter →</button>
+      </div>
+      <p style="font-size:10px; color:rgba(255,255,255,0.15); letter-spacing:0.08em; text-align:center; max-width:400px; line-height:1.8;">
+        Generate token at GitHub → Settings → Developer Settings → Personal Access Tokens → Tokens (classic) → repo scope required
+      </p>
+    </div>
+
+    <!-- EDITOR -->
+    <div id="editor-screen">
+      <div class="editor-header">
+        <span class="editor-label">new post</span>
+        <div class="editor-actions">
+          <button class="btn btn-muted" onclick="doLogout()">logout</button>
+          <button class="btn btn-green" onclick="publishPost()" id="publish-btn">Publish →</button>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-label">Title</div>
+        <input type="text" id="post-title" placeholder="Post title..." />
+      </div>
+
+      <div class="field-group">
+        <div class="field-label">Tags <span style="opacity:0.4">(comma separated)</span></div>
+        <input type="text" id="post-tags" placeholder="tech, life, coding" />
+        <div class="tags-hint">e.g: bioinformatics, journal, review</div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-label">Cover Image URL <span style="opacity:0.4">(optional)</span></div>
+        <input type="url" id="post-image" placeholder="https://..." />
+      </div>
+
+      <div class="field-group">
+        <div class="field-label">Content <span style="opacity:0.4">(markdown supported)</span></div>
+        <textarea id="content" placeholder="Write your post here...&#10;&#10;Markdown is supported:&#10;# Heading&#10;**bold** _italic_&#10;- list item"></textarea>
+        <div class="char-count" id="char-count">0 chars</div>
+      </div>
+
+      <!-- EXISTING POSTS -->
+      <div class="posts-section">
+        <div class="posts-section-title">existing posts</div>
+        <div id="admin-posts-list">
+          <p style="font-size:11px; color:rgba(255,255,255,0.2); letter-spacing:0.08em;">loading...</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <div class="status-bar" id="status-bar">
+    <div class="status-dot"></div>
+    <span id="status-text"></span>
+  </div>
+
+  <script>
+    const GITHUB_USER = 'Weemoney';
+    const GITHUB_REPO = 'portfolio-website';
+    const POSTS_FILE  = 'blog/posts.json';
+    const API_BASE    = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}`;
+
+    let token = '';
+    let postsCache = [];
+
+    // ── LOGIN ──────────────────────────────────────────────
+    async function doLogin() {
+      const input = document.getElementById('token-input').value.trim();
+      const err   = document.getElementById('login-error');
+      if (!input) { err.textContent = 'token required'; return; }
+
+      showStatus('verifying token...', 'loading');
+
+      try {
+        const res = await fetch(`${API_BASE}`, {
+          headers: { Authorization: `Bearer ${input}` }
+        });
+        if (!res.ok) throw new Error();
+        token = input;
+        sessionStorage.setItem('gh_token', token);
+        showEditor();
+      } catch {
+        err.textContent = 'invalid token or no repo access';
+        hideStatus();
+      }
+    }
+
+    function doLogout() {
+      token = '';
+      sessionStorage.removeItem('gh_token');
+      document.getElementById('login-screen').style.display = 'flex';
+      document.getElementById('editor-screen').style.display = 'none';
+      document.getElementById('token-input').value = '';
+    }
+
+    function showEditor() {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('editor-screen').style.display = 'block';
+      hideStatus();
+      loadAdminPosts();
+    }
+
+    // auto-login from session
+    window.addEventListener('load', () => {
+      const saved = sessionStorage.getItem('gh_token');
+      if (saved) { token = saved; showEditor(); }
+    });
+
+    // ── CHAR COUNT ─────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+      const content = document.getElementById('content');
+      if (content) {
+        content.addEventListener('input', () => {
+          document.getElementById('char-count').textContent = content.value.length + ' chars';
+        });
+      }
+      const tokenInput = document.getElementById('token-input');
+      if (tokenInput) {
+        tokenInput.addEventListener('keydown', e => {
+          if (e.key === 'Enter') doLogin();
+        });
+      }
+    });
+
+    // ── GITHUB FILE HELPERS ────────────────────────────────
+    async function getFile(path) {
+      const res = await fetch(`${API_BASE}/contents/${path}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (res.status === 404) return { content: null, sha: null };
+      if (!res.ok) throw new Error('fetch failed');
+      const data = await res.json();
+      const content = JSON.parse(atob(data.content.replace(/\n/g, '')));
+      return { content, sha: data.sha };
+    }
+
+    async function putFile(path, content, sha, message) {
+      const body = {
+        message,
+        content: btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2)))),
+      };
+      if (sha) body.sha = sha;
+      const res = await fetch(`${API_BASE}/contents/${path}`, {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.message || 'put failed');
+      }
+      return res.json();
+    }
+
+    async function putRawFile(path, rawString, sha, message) {
+      const body = {
+        message,
+        content: btoa(unescape(encodeURIComponent(rawString))),
+      };
+      if (sha) body.sha = sha;
+      const res = await fetch(`${API_BASE}/contents/${path}`, {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.message || 'put failed');
+      }
+      return res.json();
+    }
+
+    async function deleteFile(path, sha, message) {
+      const res = await fetch(`${API_BASE}/contents/${path}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ message, sha })
+      });
+      if (!res.ok) throw new Error('delete failed');
+    }
+
+    // ── PUBLISH ────────────────────────────────────────────
+    async function publishPost() {
+      const title   = document.getElementById('post-title').value.trim();
+      const content = document.getElementById('content').value.trim();
+      const tagsRaw = document.getElementById('post-tags').value.trim();
+      const image   = document.getElementById('post-image').value.trim();
+
+      if (!title) { showStatus('title is required', 'error'); return; }
+      if (!content) { showStatus('content is required', 'error'); return; }
+
+      const btn = document.getElementById('publish-btn');
+      btn.disabled = true;
+      showStatus('publishing...', 'loading');
+
+      try {
+        const id   = Date.now().toString();
+        const date = new Date().toISOString();
+        const slug = `${date.slice(0,10)}-${title.toLowerCase().replace(/[^a-z0-9]+/g,'-').slice(0,40)}`;
+        const tags = tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [];
+
+        // 1. save markdown post file
+        const postPath = `blog/posts/${slug}.md`;
+        await putRawFile(postPath, content, null, `post: ${title}`);
+
+        // 2. update posts.json index
+        const { content: posts, sha } = await getFile(POSTS_FILE);
+        const postsList = posts || [];
+        postsList.unshift({ id, slug, title, date, tags, image: image || null, file: postPath });
+        await putFile(POSTS_FILE, postsList, sha, `index: add ${title}`);
+
+        // reset form
+        document.getElementById('post-title').value = '';
+        document.getElementById('content').value = '';
+        document.getElementById('post-tags').value = '';
+        document.getElementById('post-image').value = '';
+        document.getElementById('char-count').textContent = '0 chars';
+
+        showStatus('published successfully!', 'success');
+        setTimeout(hideStatus, 3000);
+        loadAdminPosts();
+
+      } catch (e) {
+        showStatus('error: ' + e.message, 'error');
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    // ── LOAD ADMIN POSTS ───────────────────────────────────
+    async function loadAdminPosts() {
+      const container = document.getElementById('admin-posts-list');
+      try {
+        const { content: posts } = await getFile(POSTS_FILE);
+        postsCache = posts || [];
+        if (!postsCache.length) {
+          container.innerHTML = `<p style="font-size:11px; color:rgba(255,255,255,0.2); letter-spacing:0.08em;">no posts yet</p>`;
+          return;
+        }
+        container.innerHTML = postsCache.map(p => `
+          <div class="admin-post-item">
+            <span class="admin-post-title">${p.title}</span>
+            <span class="admin-post-date">${p.date.slice(0,10)}</span>
+            <button class="btn-delete" onclick="deletePost('${p.id}')">delete</button>
+          </div>
+        `).join('');
+      } catch {
+        container.innerHTML = `<p style="font-size:11px; color:rgba(255,255,255,0.2);">could not load posts</p>`;
+      }
+    }
+
+    // ── DELETE ─────────────────────────────────────────────
+    async function deletePost(id) {
+      if (!confirm('Delete this post?')) return;
+      showStatus('deleting...', 'loading');
+      try {
+        const post = postsCache.find(p => p.id === id);
+        if (!post) throw new Error('post not found');
+
+        // delete markdown file
+        try {
+          const res = await fetch(`${API_BASE}/contents/${post.file}`, {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          if (res.ok) {
+            const fileData = await res.json();
+            await deleteFile(post.file, fileData.sha, `delete: ${post.title}`);
+          }
+        } catch {}
+
+        // update index
+        const { content: posts, sha } = await getFile(POSTS_FILE);
+        const updated = (posts || []).filter(p => p.id !== id);
+        await putFile(POSTS_FILE, updated, sha, `index: remove ${post.title}`);
+
+        showStatus('deleted', 'success');
+        setTimeout(hideStatus, 2000);
+        loadAdminPosts();
+      } catch (e) {
+        showStatus('error: ' + e.message, 'error');
+      }
+    }
+
+    // ── STATUS BAR ─────────────────────────────────────────
+    function showStatus(msg, type) {
+      const bar  = document.getElementById('status-bar');
+      const text = document.getElementById('status-text');
+      bar.className = `status-bar show ${type}`;
+      text.textContent = msg;
+    }
+
+    function hideStatus() {
+      document.getElementById('status-bar').classList.remove('show');
+    }
+
+    // Enter key on token input
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && document.getElementById('login-screen').style.display !== 'none') {
+        doLogin();
+      }
+    });
+  </script>
+
+</body>
+</html>
