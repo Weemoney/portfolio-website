@@ -101,13 +101,13 @@
       font-size: 10px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.22);
+      color: rgb(204, 200, 200);
     }
     .feed-label::before { content: '> '; color: var(--green); }
 
     .feed-info {
       font-size: 10px;
-      color: rgba(255,255,255,0.18);
+      color: rgb(204, 200, 200);
       letter-spacing: 0.08em;
     }
 
@@ -255,7 +255,7 @@
       justify-content: center;
       flex-direction: column;
       gap: 10px;
-      color: rgba(255,255,255,0.18);
+      color: rgb(172, 162, 162);
       font-size: 11px;
       letter-spacing: 0.1em;
     }
@@ -337,7 +337,7 @@
     </div>
 
     <div class="post-grid" id="post-grid">
-      <div class="state-msg"><span>loading...</span></div>
+      <div class="state-msg"><span>There is no post? Then, start writing!</span></div>
     </div>
 
     <div class="pagination" id="pagination"></div>
@@ -397,7 +397,7 @@
 
       // pad to 6 cards so grid stays full
       const cards = slice.map(post => {
-        const preview = post.preview || 'No preview available....';
+        const preview = post.preview || 'No preview available... .';
         const tags    = (post.tags || []).map(t =>
           `<span class="tag ${tagColor(t)}">${t}</span>`).join('');
         const imgHtml = post.image
@@ -463,7 +463,34 @@
       return [...pages].sort((a, b) => a - b);
     }
 
-    loadPosts();
+    async function loadPosts() {
+  try {
+    const url = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${POSTS_FILE}?t=${Date.now()}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error();
+    allPosts = await res.json();
+    allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    // fetch preview untuk post yang belum punya
+    await Promise.all(allPosts.map(async post => {
+      if (!post.preview && post.file) {
+        try {
+          const mdUrl = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${post.file}?t=${Date.now()}`;
+          const mdRes = await fetch(mdUrl);
+          if (mdRes.ok) {
+            const md = await mdRes.text();
+            post.preview = md.replace(/[#*`>\-]/g, '').trim().slice(0, 69) + ' ....';
+          }
+        } catch {}
+      }
+    }));
+
+    renderPage(1);
+  } catch {
+    document.getElementById('post-grid').innerHTML =
+      `<div class="state-msg"><span class="big">∅</span><span>no posts yet</span></div>`;
+  }
+}
   </script>
 
 </body>

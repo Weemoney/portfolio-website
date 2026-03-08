@@ -390,7 +390,7 @@
   <script>
     const GITHUB_USER = 'Weemoney';
     const GITHUB_REPO = 'portfolio-website';
-    const POSTS_FILE = 'more%20page/blog%20page/blog/posts.json';
+    const POSTS_FILE = 'more page/blog page/blog/posts.json';
     const API_BASE    = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}`;
 
     let token = '';
@@ -542,13 +542,13 @@
         const tags = tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [];
 
         // 1. save markdown post file
-        const postPath = `blog/posts/${slug}.md`;
+        const postPath = `more page/blog page/blog/posts/${slug}.md`;
         await putRawFile(postPath, content, null, `post: ${title}`);
 
         // 2. update posts.json index
         const { content: posts, sha } = await getFile(POSTS_FILE);
         const postsList = posts || [];
-        const preview = content.replace(/[#*`>\-]/g, '').trim().slice(0, 69) + ' ....';
+        const preview = content.replace(/[#*`>\-]/g, '').trim().slice(0, 69) + ' ... .';
         postsList.unshift({ id, slug, title, date, tags, image: image || null, file: postPath, preview });
         await putFile(POSTS_FILE, postsList, sha, `index: add ${title}`);
 
