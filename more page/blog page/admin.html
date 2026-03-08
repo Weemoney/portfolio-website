@@ -548,7 +548,8 @@
         // 2. update posts.json index
         const { content: posts, sha } = await getFile(POSTS_FILE);
         const postsList = posts || [];
-        postsList.unshift({ id, slug, title, date, tags, image: image || null, file: postPath });
+        const preview = content.replace(/[#*`>\-]/g, '').trim().slice(0, 69) + ' ....';
+        postsList.unshift({ id, slug, title, date, tags, image: image || null, file: postPath, preview });
         await putFile(POSTS_FILE, postsList, sha, `index: add ${title}`);
 
         // reset form

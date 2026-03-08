@@ -268,7 +268,7 @@
 <body>
 
   <header>
-    <a href="/more page/more.html" class="back-link">← my_journal</a>
+    <a href="https://weemoney.github.io/portfolio-website/more%20page/more.html" class="back-link">← my_journal</a>
     <div class="header-right">
       <span class="page-title">// <span>blog</span></span>
       <a href="admin.html" class="admin-link">admin</a>
@@ -327,9 +327,7 @@
         posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
         feed.innerHTML = posts.map(post => {
-          const preview = post.content
-            ? post.content.replace(/[#*`>\-]/g, '').trim().slice(0, 100) + '....'
-            : 'No preview available....';
+          const preview = post.preview || 'No preview available....';
 
           const tagsHtml = (post.tags || []).map(t =>
             `<span class="tag ${tagColor(t)}">${t}</span>`
