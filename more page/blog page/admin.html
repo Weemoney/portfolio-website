@@ -457,7 +457,8 @@
 
     // ── GITHUB FILE HELPERS ────────────────────────────────
     async function getFile(path) {
-      const res = await fetch(`${API_BASE}/contents/${path}`, {
+      const encodedPath = path.split('/').map(p => encodeURIComponent(p)).join('/');
+      const res = await fetch(`${API_BASE}/contents/${encodedPath}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (res.status === 404) return { content: null, sha: null };
@@ -473,7 +474,7 @@
         content: btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2)))),
       };
       if (sha) body.sha = sha;
-      const res = await fetch(`${API_BASE}/contents/${path}`, {
+      const res = await fetch(`${API_BASE}/contents/${path.split('/').map(p => encodeURIComponent(p)).join('/')}`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -494,7 +495,7 @@
         content: btoa(unescape(encodeURIComponent(rawString))),
       };
       if (sha) body.sha = sha;
-      const res = await fetch(`${API_BASE}/contents/${path}`, {
+      const res = await fetch(`${API_BASE}/contents/${path.split('/').map(p => encodeURIComponent(p)).join('/')}`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -510,7 +511,7 @@
     }
 
     async function deleteFile(path, sha, message) {
-      const res = await fetch(`${API_BASE}/contents/${path}`, {
+      const res = await fetch(`${API_BASE}/contents/${path.split('/').map(p => encodeURIComponent(p)).join('/')}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
