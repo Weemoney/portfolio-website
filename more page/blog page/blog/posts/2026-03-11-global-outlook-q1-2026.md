@@ -1,0 +1,7 @@
+# I don't think it's gonna be better
+
+Today, I have a lot of thoughts of this world, geopolitics, economy, domestic politics, climate change, environmental impact. Until, yesterday, I attend a webinar from Dibimbing that presenting about Green EDGE, ESG, Sustainability in Industry. And I just realized how urgent is it, it's emergency thing I felt something very bad is gonna happen in the very few of future times.
+
+We know, that now Iran gpt raid by US, Israel and Middle East Countries got heated again, Gaza genocided, North Korea already directing their nuclear rocket to Israel, Russia still invading Ukraine, China opressed US for supporting Iran, US protected Taiwan from China, Japan got threat from China new robotic tech parade. And just by the new year of 2026, we got Maduro 'Venez President kidnapped by US. It's very dangerous for international politics heat, because the disaster of this world came from politic. And this step by US as Number one country make every country make bad decision, who affect poor the most.
+
+I mean, something bad it's not gonna be better by the short time, we face new era that we never met in history book before. I hope someday you will join us, and the world will live as one.
