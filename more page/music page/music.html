@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music — Bagus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Bebas+Neue&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="music.css">
+</head>
+<body>
+
+  <div class="bg-glow hiphop" id="bg-glow"></div>
+
+  <header>
+    <a href="../more.html" class="back-link">← my_journal</a>
+    <span class="page-title">// <span>music</span></span>
+  </header>
+
+  <div class="genre-tabs">
+    <button class="genre-tab active hiphop" data-genre="hiphop" onclick="switchGenre('hiphop')">Hip-Hop</button>
+    <button class="genre-tab rock"          data-genre="rock"   onclick="switchGenre('rock')">Rock</button>
+    <button class="genre-tab country"       data-genre="country" onclick="switchGenre('country')">Country</button>
+  </div>
+
+  <main>
+    <div class="vinyl-wrap" id="vinyl-wrap" onclick="toggleVinyl()">
+      <div class="vinyl" id="vinyl">
+        <canvas id="vinyl-canvas" width="300" height="300"></canvas>
+      </div>
+      <div class="needle" id="needle">
+        <div class="needle-pivot"></div>
+        <div class="needle-arm"></div>
+        <div class="needle-tip"></div>
+      </div>
+      <div class="vinyl-hint">click to play</div>
+    </div>
+
+    <div class="info-panel" id="info-panel">
+      <div class="info-genre" id="info-genre">Hip-Hop</div>
+      <div class="info-label">artists</div>
+      <ul class="artist-list" id="artist-list"></ul>
+    </div>
+  </main>
+
+<script src="music.js"></script>
+
+</body>
+</html>

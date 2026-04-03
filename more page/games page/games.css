@@ -35,6 +35,16 @@
         backdrop-filter: blur(12px);
     }
 
+    .steam-link {
+    color: #4fc3f7;
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+    }
+    .steam-link:hover { opacity: 1; }
+
     .back-link {
         color: var(--red);
         text-decoration: none;
