@@ -2,7 +2,9 @@ My relationships with people have always had a tendency to fall apart. My first 
 
 I had a plan to make a change in university. Things weren't going well, and then I met a girl who seemed very different from anyone I'd known before — at least from where I stood. I was just trying to be kind to her. I kept making mistakes in front of her, embarrassed myself, yet she still praised me.
 
-At first I thought, _"Is this hypocrisy? I'm not that foolish. Real Eyez, Realize, Real Lies."_
+At first thought I was like,
+
+_"Is this hypocrisy? I'm not that foolish. Real Eyez, Realize, Real Lies."_
 
 I already knew the answer. But she was consistent — consistently praising me, consistently building my trust — and slowly, I loosened my guard. That's where the crash began.
 
@@ -16,7 +18,7 @@ And then, when I said
 
 _"I'm jealous,"_
 
-I meant it as a compliment
+I meant it as a compliment.
 
 _"you're a force of nature, so anyone who has you is lucky, and I'm jealous, because for a brief moment, you made my dream feel real."_
 
@@ -26,4 +28,4 @@ I don't mind.
 
 As long as I'm free from the chains that were pulling me under.
 
-At this point, this isn't about heartbreak. It's about truth, or I might called it **The Rhapsody Of Uncertainty**
+In the end, it was never about heartbreak. It's about truth, or I might called it **The Rhapsody Of Uncertainty**
