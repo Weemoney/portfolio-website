@@ -26,4 +26,4 @@ As long as I'm free from the chains that were pulling me under.
 
 In the end, this isn't about heartbreak. It's about truth, or the way I love to called it with,
 
-**"The Rhapsody Of Uncertainty"** .
+**"The Rhapsody Of Uncertainty"** _._
